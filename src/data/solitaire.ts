@@ -2,22 +2,43 @@ type Card = { value: string; img: string };
 type SuitGroup = { suit: string; cards: Card[] };
 
 export interface ICard {
-	suit: string
-	value: string
-	img: string
-	isOpen: boolean
+	suit: string;
+	value: string;
+	img: string;
+	isOpen: boolean;
+}
+
+export interface ISolitaireState {
+	stock: ICard[];
+	foundation: ICard[][];
+	tableau: ICard[][];
+	lastStockIndex: number|null;
+	score: number;
+}
+
+export interface IHistoryState<T> {
+	past: T[];
+	present: T;
+	future: T[];
+}
+
+export const historyActions = {
+	undo: "undo",
+	redo: "redo",
+	reset: "reset",
+}
+
+export const gameActions = {
+	initialize: "initialize",
+	move: "move",
+	show: "show",
+	reset: "reset"
 }
 
 export const Sources = {
 	stock: "stock",
 	foundation: "foundation",
 	tableau: "tableau",
-}
-
-export const historyButtons = {
-	undo: "undo",
-	redo: "redo",
-	reset: "reset",
 }
 
 export const Difficulties = {
@@ -44,6 +65,10 @@ export const solitaireCards: SuitGroup[] = suits.map((suit) => ({
 		img: `src/assets/Playing Cards/${nameFor(value)}_of_${suit}.svg`,
 	})),
 }));
+
+export const cards = solitaireCards.flatMap((g) =>
+	g.cards.map((c) => ({ suit: g.suit, value: c.value, img: c.img, isOpen: false }))
+);
 
 // convenience flattened list (suit included per card)
 export const solitaireCardsFlat = solitaireCards.flatMap((g) =>
