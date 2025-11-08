@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router";
 import { games, palettes } from "../../data/general";
-
 const Home = () => {
 	const [selectedId, setSelectedId] = useState<number | null>(null);
 

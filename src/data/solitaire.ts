@@ -42,7 +42,7 @@ export const Sources = {
 }
 
 export const Difficulties = {
-	difficult: "difficult",
+	hard: "hard",
 	easy: "easy",
 }
 
@@ -78,3 +78,11 @@ export const solitaireCardsFlat = solitaireCards.flatMap((g) =>
 export const solitaireSuits = suits;
 
 export const getCardsBySuit = (suit: string) => solitaireCards.find((g) => g.suit === suit)?.cards || [];
+
+export const lowScoreMessages = [
+  "Congrats on winning… even if your score’s a little suspicious 👀",
+  "Victory is victory — even if the scoreboard disagrees 😅",
+  "You did it! Somehow. With *that* score. Impressive.",
+  "Congrats on the win! Let’s just pretend the score doesn’t exist.",
+  "A win’s a win… even if your score’s shy!",
+];

@@ -1,11 +1,12 @@
 import React, { useEffect, useReducer, useState } from "react";
-import { cards, gameActions, historyActions, suits, type ICard } from "../../data/solitaire";
+import { cards, Difficulties, gameActions, historyActions, lowScoreMessages, suits, type ICard } from "../../data/solitaire";
 import SolitaireCard from "./Solitaire-card";
 import { gameReducer, historyReducer, initialGameState } from "./Solitaire.reducer";
 
 const Solitaire = () => {
     const [isInitialized, setIsInitialized] = useState(false);
     const [isFinished, setIsFinished] = useState(false);
+    const [difficulty, setDifficulty] = useState<null|string>(null);
 
     const [state, dispatch] = useReducer(historyReducer(gameReducer), {past: [], present: initialGameState, future: []});
 
@@ -62,6 +63,7 @@ const Solitaire = () => {
                 });
                 break;
             case historyActions.reset:
+                setDifficulty(null);
                 setIsFinished(false);
                 dispatch({
                     type: historyActions.reset
@@ -74,14 +76,13 @@ const Solitaire = () => {
     } 
 
     useEffect(() => {
-        if (isInitialized) return; // prevent double init
+        if (isInitialized || !difficulty) return; // prevent double init
         dispatch({
             type: gameActions.initialize
         });
         setIsInitialized(() => true)
-    
       return () => {}
-    }, [isInitialized])
+    }, [difficulty])
     
     useEffect(() => {
         // win
@@ -93,6 +94,28 @@ const Solitaire = () => {
 
     return (
         <>
+            {
+                !difficulty &&
+                <div className="absolute h-screen w-screen top-0 overflow-hidden" style={{'zIndex': 999}}>
+                    <div className="bg-black/70 flex flex-col items-center justify-center h-full w-full">
+                        <div className="flex flex-col bg-gradient-to-br from-green-800 via-green-900 to-green-900 p-5 gap-4 overflow-auto relative rounded-2xl">
+                            <p className="text-white font-bold">Choose level of difficulty</p>
+                            <button
+                                onClick={() => setDifficulty(Difficulties.easy)}
+                                type="button"
+                                className="px-4 py-2 rounded-xl cursor-pointer bg-green-600 text-white font-semibold hover:bg-green-500 active:bg-green-700 transition-all shadow-md">
+                                Easy
+                            </button>
+                            <button
+                                onClick={() => setDifficulty(Difficulties.hard)}
+                                type="button"
+                                className="px-4 py-2 rounded-xl cursor-pointer bg-red-600 text-white font-semibold hover:bg-red-500 active:bg-red-700 transition-all shadow-md">
+                                Hard
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
             <div className="h-screen w-screen flex flex-col bg-gradient-to-br from-green-800 via-green-900 to-black p-5 gap-4 overflow-auto relative">
                 <div className="flex justify-between items-center">
                     <p className="text-white font-bold">Score: {score}</p>
@@ -106,7 +129,7 @@ const Solitaire = () => {
                 <div className="grid grid-cols-2 w-full gap-[2%]">
                     {/* Stock */}
                     <div className="flex flex-row gap-[2%]">
-                        <div className="" onClick={() => showStock(3)}>
+                        <div className="" onClick={() => showStock(difficulty === Difficulties.easy ? 1 : 3)}>
                             <SolitaireCard isOpen={false} className={(stock.length && stock[stock.length-1].isOpen) || !stock.length ? 'opacity-75 grayscale-100 pointer-events-none select-none' : ''}></SolitaireCard>
                         </div>
                         <div className="flex flex-row relative flex-1 h-full w-full">
@@ -198,7 +221,11 @@ const Solitaire = () => {
                 isFinished &&
                 <div onClick={() => historyButton(historyActions.reset)} className="absolute h-screen w-screen top-0 overflow-hidden" style={{'zIndex': 999}}>
                     <div className="bg-black/70 flex flex-col items-center justify-center h-full w-full">
-                        <p className="text-white font-bold text-2xl">Congrats! Your score is {score}! 🎉</p>
+                        <p className="text-white font-bold text-2xl">{
+                            score <= 5 ?
+                            lowScoreMessages[Math.floor(Math.random() * lowScoreMessages.length)]
+                            : "Congrats! Your score is {score}! 🎉"
+                        }</p>
                         <img className="h-3/4 select-none pointer-events-none" src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExa2M4ZTd1M3k4OXJ6bXFlZDNrenoxd2JkcTRyY3g5aXh6N29uczU0MiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/yoJC2GnSClbPOkV0eA/giphy.gif"></img>
                     </div>
                 </div>

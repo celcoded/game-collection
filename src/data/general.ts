@@ -1,8 +1,10 @@
+import Solitaire from '../assets/Thumbnails/Solitaire.png';
+
 export const games = [
 	{
 		id: 1,
 		title: "Solitaire",
-		thumbnail: "",
+		thumbnail: Solitaire,
         url: "/solitaire",
         tag: "casual"
 	},

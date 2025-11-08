@@ -86,6 +86,7 @@ export function gameReducer(state: ISolitaireState, action: {type: string, paylo
                     }));
 
                     newScore = score + getPoints(source, lastCardSource);
+                    newScore = newScore < 0 ? 0 : newScore;
                     return {stock: newStock, foundation: newFoundation, tableau: newTableau, lastStockIndex: newLastStockIndex, score: newScore};
 
                 case Sources.tableau:
@@ -115,6 +116,7 @@ export function gameReducer(state: ISolitaireState, action: {type: string, paylo
                     }));
 
                     newScore = score + getPoints(source, lastCardSource);
+                    newScore = newScore < 0 ? 0 : newScore;
                     return {stock: newStock, foundation: newFoundation, tableau: newTableau, lastStockIndex: newLastStockIndex, score: newScore};
 
                 default:
