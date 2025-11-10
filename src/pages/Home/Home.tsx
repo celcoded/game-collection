@@ -9,9 +9,14 @@ const Home = () => {
 			{/* arcade-style dark background */}
 			<div className="h-screen w-full bg-gradient-to-br from-black via-slate-900 to-zinc-900">
 				<div className="flex flex-col mx-auto h-full">
-                    <div className="grow-0 m-4 mb-0">
-                        <h1 className="text-4xl font-extrabold mb-1 text-white tracking-wider">THE GAME COLLECTION</h1>
-                        <p className="text-sm text-slate-300 mb-6">Explore the games I'm still developing and learning from!</p>
+                    <div>
+                        <div className="grow-0 m-4 mb-0">
+                            <h1 className="text-4xl font-extrabold mb-1 text-white tracking-wider">THE GAME COLLECTION</h1>
+                            <p className="text-sm text-slate-300 mb-6">Explore the games I'm still developing and learning from!</p>
+                        </div>
+                        <div>
+                            
+                        </div>
                     </div>
 
                     <div className="grow-1 overflow-auto">

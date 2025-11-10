@@ -116,18 +116,18 @@ const Solitaire = () => {
                 !difficulty &&
                 <div className="absolute h-screen w-screen top-0 overflow-hidden" style={{'zIndex': 999}}>
                     <div className="bg-black/70 flex flex-col items-center justify-center h-full w-full">
-                        <div className="flex flex-col bg-gradient-to-br from-green-800 via-green-900 to-green-900 p-5 gap-4 overflow-auto relative rounded-2xl">
-                            <p className="text-white font-bold">Choose level of difficulty</p>
+                        <div className="flex flex-col bg-gradient-to-br from-green-800 via-green-900 to-green-900 p-fluid-20 gap-fluid-16 overflow-auto relative rounded-2xl">
+                            <p className="text-white text-fluid-16 font-bold">Choose level of difficulty</p>
                             <button
                                 onClick={() => setDifficulty(Difficulties.easy)}
                                 type="button"
-                                className="px-4 py-2 rounded-xl cursor-pointer bg-green-600 text-white font-semibold hover:bg-green-500 active:bg-green-700 transition-all shadow-md">
+                                className="px-fluid-16 py-fluid-8 rounded-xl cursor-pointer bg-green-600 text-white text-fluid-16 font-semibold hover:bg-green-500 active:bg-green-700 transition-all shadow-md">
                                 Easy
                             </button>
                             <button
                                 onClick={() => setDifficulty(Difficulties.hard)}
                                 type="button"
-                                className="px-4 py-2 rounded-xl cursor-pointer bg-red-600 text-white font-semibold hover:bg-red-500 active:bg-red-700 transition-all shadow-md">
+                                className="px-fluid-16 py-fluid-8 rounded-xl cursor-pointer bg-red-600 text-white text-fluid-16 font-semibold hover:bg-red-500 active:bg-red-700 transition-all shadow-md">
                                 Hard
                             </button>
                         </div>
@@ -137,10 +137,10 @@ const Solitaire = () => {
             <DndContext
                 onDragStart={(e) => handleDragStart(e)}
                 onDragEnd={(e) => handleDragEnd(e)}>
-                <div className="h-screen w-screen flex flex-col bg-gradient-to-br from-green-800 via-green-900 to-black p-5 gap-4 overflow-auto relative *:touch-none *:select-none">
+                <div className="h-screen w-screen flex flex-col bg-gradient-to-br from-green-800 via-green-900 to-black p-fluid-20 gap-fluid-16 overflow-auto relative *:touch-none *:select-none">
                     <div className="flex justify-between items-center">
-                        <p className="text-white font-bold">Score: {score}</p>
-                        <div className="flex *:text-3xl *:cursor-pointer *:hover:grayscale-0 *:grayscale-100 *:hue-rotate-190 gap-3">
+                        <p className="text-white text-fluid-16 font-bold">Score: {score}</p>
+                        <div className="flex *:text-fluid-30 *:cursor-pointer *:hover:grayscale-0 *:grayscale-100 *:hue-rotate-190 gap-fluid-12">
                             <div onClick={() => historyButton(historyActions.undo)}>⏪</div>
                             <div onClick={() => historyButton(historyActions.redo)}>⏩</div>
                             <div onClick={() => historyButton(historyActions.reset)}>🔄️</div>
@@ -198,7 +198,7 @@ const Solitaire = () => {
                     </div>
                     
                     {/* Tableau */}
-                    <div className="flex-1 grid grid-cols-7 overflow-auto">
+                    <div className="flex-1 grid grid-cols-7 overflow-auto gap-fluid-4">
                         {tableau.length && tableau.map((col: ICard[], colIndex: number) => (
                             <div className="relative flex justify-center group/tableau" key={`col-${colIndex}`}>
                                 {col.length ? (
@@ -207,7 +207,10 @@ const Solitaire = () => {
                                             <CardDragDrop id={`tableau-${colIndex}-${cardIndex}`}
                                                 key={`tableau-${colIndex}-${cardIndex}`}
                                                 className={`absolute ${activeCards.includes(card) && 'opacity-0'}`}
-                                                style={{'zIndex': cardIndex, 'top': cardIndex*35}}
+                                                style={{
+                                                    top: `${cardIndex * 5}%`,
+                                                    zIndex: cardIndex,
+                                                }}
                                                 isDropDisabled={!(cardIndex+1 === col.length)}
                                             >
                                                 <SolitaireCard
@@ -217,7 +220,10 @@ const Solitaire = () => {
                                             <div id={`tableau-${colIndex}-${cardIndex}`}
                                                 key={`tableau-${colIndex}-${cardIndex}`}
                                                 className={`absolute pointer-events-none select-none`}
-                                                style={{'zIndex': cardIndex, 'top': cardIndex*35}}
+                                                style={{
+                                                    top: `${cardIndex * 5}%`,
+                                                    zIndex: cardIndex,
+                                                }}
                                             >
                                                 <SolitaireCard
                                                     isOpen={false}/>
@@ -245,7 +251,7 @@ const Solitaire = () => {
                                     key={`dragoverlay-${index}`}
                                     className={`${index > 0 ? 'absolute' : ''}`}
                                     style={{
-                                        top: `${index * 35}px`,
+                                        top: `${index * 20}%`,
                                         zIndex: index,
                                     }}
                                     card={card}/>
@@ -258,7 +264,7 @@ const Solitaire = () => {
                 isFinished &&
                 <div onClick={() => historyButton(historyActions.reset)} className="absolute h-screen w-screen top-0 overflow-hidden" style={{'zIndex': 999}}>
                     <div className="bg-black/70 flex flex-col items-center justify-center h-full w-full">
-                        <p className="text-white font-bold text-2xl">{
+                        <p className="text-white font-bold text-fluid-24">{
                             score <= 10 ?
                             lowScoreMessages[Math.floor(Math.random() * lowScoreMessages.length)]
                             : `Congrats! Your score is ${score}! 🎉`

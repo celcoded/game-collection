@@ -4,3 +4,56 @@
     width: 0px;
     height: 0px;
 }
+
+@utility text-fluid-* { font-size: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px) !important; }
+
+/* width */
+@utility w-fluid-* { width: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px); }
+@utility max-w-fluid-* { max-width: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px); }
+@utility min-w-fluid-* { min-width: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px); }
+
+/* height */
+@utility h-fluid-* { height: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px); }
+@utility max-h-fluid-* { max-height: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px); }
+@utility min-h-fluid-* { min-height: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px); }
+
+@utility leading-fluid-* { line-height: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px); }
+
+@utility border-fluid-* { border-width: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px); }
+
+@utility gap-fluid-* { gap: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px); }
+
+/* padding */
+@utility p-fluid-* { padding: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px); }
+@utility px-fluid-* {
+    padding-left: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px);
+    padding-right: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px);
+}
+@utility py-fluid-* {
+    padding-top: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px);
+    padding-bottom: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px);
+}
+@utility pt-fluid-* { padding-top: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px); }
+@utility pb-fluid-* { padding-bottom: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px); }
+@utility ps-fluid-* { padding-left: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px); }
+@utility pe-fluid-* { padding-right: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px); }
+
+/* margin */
+@utility m-fluid-* { margin: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px); }
+@utility mx-fluid-* {
+    margin-left: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px);
+    margin-right: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px);
+}
+@utility my-fluid-* {
+    margin-top: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px);
+    margin-bottom: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px);
+}
+@utility mt-fluid-* { margin-top: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px); }
+@utility mb-fluid-* { margin-bottom: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px); }
+@utility ms-fluid-* { margin-left: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px); }
+@utility me-fluid-* { margin-right: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px); }
+
+@utility top-fluid-* { top: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px); }
+@utility bottom-fluid-* { bottom: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px); }
+@utility right-fluid-* { right: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px); }
+@utility left-fluid-* { left: calc(((--value(integer) - 10) * 0.05 + 0.4) * 1vh + ((--value(integer) - 10) * 0.05 + 0.4) * 1vw + 2px); }
