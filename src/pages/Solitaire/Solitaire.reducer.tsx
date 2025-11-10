@@ -74,6 +74,7 @@ export function gameReducer(state: ISolitaireState, action: {type: string, paylo
                     lastCard = foundation[+lastCardColIndex][+lastCardIndex] ?? null;
                     
                     if (suits[+lastCardColIndex] !== droppedCard.suit) return state;
+                    if (source === Sources.tableau && tableau[+colIndex][tableau[+colIndex].length-1] != droppedCard) return state;
                     if (lastCard && (ranks.indexOf(droppedCard.value) - ranks.indexOf(lastCard.value) !== 1)) return state;
 
                     newFoundation[+lastCardColIndex] = [...newFoundation[+lastCardColIndex], droppedCard];
