@@ -105,7 +105,7 @@ const Solitaire = () => {
     useEffect(() => {
         // win
         if ((foundation.every((pile: ICard[]) => pile.length === 13)) ||
-            (stock.length && stock.every((card: ICard) => card.isOpen) && tableau.every((pile: ICard[]) => pile.every((card: any) => card.isOpen)))) {
+            ((stock.length && stock.every((card: ICard) => card.isOpen) || !stock.length) && tableau.every((pile: ICard[]) => pile.every((card: any) => card.isOpen)))) {
             setIsFinished(true);
         }
     }, [foundation, tableau, stock])
